@@ -2,6 +2,7 @@ package service;
 
 import model.Product;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -36,7 +37,7 @@ class StoreCheckoutTest {
     }
 
     @Test
-    void shouldCalculateMultipleItems() {
+    void tetsShouldCalculateMultipleItems() {
         // [Apple, Apple, Orange, Apple] => £2.05
         List<Product> cart = Arrays.asList(
                 Product.APPLE, Product.APPLE, Product.ORANGE, Product.APPLE
@@ -44,4 +45,17 @@ class StoreCheckoutTest {
         assertEquals(new BigDecimal("2.05"), storeCheckout.calculateTotal(cart));
     }
 
+    @Test
+    @DisplayName("Apple 2 for 1 offer test")
+    void testShouldApplyOfferForTwoApples(){
+        List<Product> cart = List.of(Product.APPLE, Product.APPLE);
+        assertEquals(new BigDecimal("0.60"), storeCheckout.calculateTotal(cart));
+    }
+
+    @Test
+    @DisplayName("Orange 3-for-2 offer test")
+    void testShouldApplyOfferForOranges(){
+        List<Product> cart = List.of(Product.ORANGE, Product.ORANGE, Product.ORANGE);
+        assertEquals(new BigDecimal("0.50"), storeCheckout.calculateTotal(cart));
+    }
 }
