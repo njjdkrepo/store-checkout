@@ -18,6 +18,12 @@ public class StoreCheckout {
      *
      */
     public BigDecimal calculateTotal(List<Product> items){
-        return null;
+        if (items == null || items.isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+
+        return items.stream()
+                .map(Product::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
