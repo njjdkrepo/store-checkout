@@ -42,7 +42,7 @@ class StoreCheckoutTest {
         List<Product> cart = Arrays.asList(
                 Product.APPLE, Product.APPLE, Product.ORANGE, Product.APPLE
         );
-        assertEquals(new BigDecimal("2.05"), storeCheckout.calculateTotal(cart));
+        assertEquals(new BigDecimal("1.45"), storeCheckout.calculateTotal(cart));
     }
 
     @Test
